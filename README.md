@@ -1,2 +1,4 @@
 # konstapel
-Authorization and database management in one for node.js
+Authorization middleware for node.js
+
+Work in progress
