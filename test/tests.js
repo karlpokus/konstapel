@@ -75,18 +75,16 @@ test('.createToken', function(t){
 });
 
 test('.verifyToken', function(t){
-  var req = {
-        body: {token: '806a7f191e18'}
-      },
+  var req = {body: {token: '806a7f191e18'}},
       pass = klang.verifyToken(req, null, function(){
         return true;
+      }),
+      fail = klang.verifyToken({}, null, function(err){
+        return err;
       });
 
   t.equal(req.temp.id, 'abc123', 'decrypts userId');
-  t.equal(pass, true, 'calls next');
-
-  // test for no token
-  // test for bad token
-  
+  t.equal(pass, true, 'calls next on valid token');
+  t.equal(fail instanceof Error, true, 'returns error on no token');  
   t.end();
 });
