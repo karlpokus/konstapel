@@ -1,4 +1,5 @@
 [![npm version](https://badge.fury.io/js/konstapel.svg)](https://badge.fury.io/js/konstapel)
+[![Build Status](https://travis-ci.org/karlpokus/konstapel.svg?branch=master)](https://travis-ci.org/karlpokus/konstapel)
 
 # konstapel
 Authorization middleware for node.js
