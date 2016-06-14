@@ -99,7 +99,7 @@ K.prototype.createToken = function(req, res, next) {
 }
 
 K.prototype.verifyToken = function(req, res, next) {
-  var token = req.body.token || req.query.token || false;
+  var token = req.body && req.body.token || req.query && req.query.token || false;
   if (!token) {
     return next(new Knas(401, 'Not authorized'));
   }
