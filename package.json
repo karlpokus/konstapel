@@ -1,0 +1,30 @@
+{
+  "name": "konstapel",
+  "version": "1.0.0",
+  "description": "Authorization middleware for node.js",
+  "main": "konstapel.js",
+  "scripts": {
+    "test": "tape ./test/tests.js"
+  },
+  "keywords": [
+    "authorization",
+    "middleware"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karlpokus/konstapel.git"
+  },
+  "author": "Karl Pokus <karl.pokus@gmail.com> (https://github.com/karlpokus)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/karlpokus/konstapel/issues"
+  },
+  "homepage": "https://github.com/karlpokus/konstapel#readme",
+  "devDependencies": {
+    "tape": "^4.5.1"
+  },
+  "dependencies": {
+    "cryptr": "^2.0.0",
+    "knas": "^0.2.1"
+  }
+}
