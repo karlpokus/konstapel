@@ -5,22 +5,55 @@
 Authorization middleware for node.js
 
 # Features
-- protects resourses on the server
+- Protects resources on the server
 - Creates and verifies tokens
-- Verifies signupKey
-- Depends on `miffo` for middleware functions that manipulate data
+- Verifies signupKey (optional)
+- Depends on [miffo](https://github.com/karlpokus/miffo) for middleware functions that manipulate data
 - Very homemade and tailored to my needs. Probably not suitable for production
 
 # Install
-`npm install konstapel`
+```
+$ npm install konstapel [miffo]
+```
+
+# Usage
+```javascript
+var Konstapel = require('konstapel'),
+    klang = new Konstapel(<tokenKey>, <signupKey>), // signupKey optional
+    Miffo = require('miffo'),
+    db = new Miffo(<url>, <collections>);
+
+db.start();
+
+app.use('/items',
+  klang.verifyToken.bind(klang),
+  klang.findUserById.bind(db)
+);
+
+// signup flow
+app.post('/signup',
+  klang.checkSignupKey.bind(klang),
+  klang.findUsers.bind(db),
+  klang.usernameNotTaken,
+  klang.insertUser.bind(db),
+  klang.createToken.bind(klang),
+  defaultResponse
+);
+
+// login flow
+app.post('/login',
+  klang.findUserByUsername.bind(db),
+  klang.usernameIsValid,
+  klang.pwdIsValid.bind(db),
+  klang.createToken.bind(klang),
+  defaultResponse
+);    
+```
 
 # Test
-`npm test`
-
-# Todos
-- more tests
-- better readme
-- include usage
+```
+$ npm test
+```
 
 # license
 MIT
