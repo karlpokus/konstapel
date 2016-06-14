@@ -14,8 +14,7 @@ Authorization middleware for node.js
 # Test
 `npm test`
 
-# TODOs
-
+# Todos
 - more tests
 - better readme
 - include usage
