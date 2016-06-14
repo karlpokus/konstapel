@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/konstapel.svg)](https://badge.fury.io/js/konstapel)
+
 # konstapel
 Authorization middleware for node.js
 
