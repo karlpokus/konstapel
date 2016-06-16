@@ -5,9 +5,8 @@
 Authorization middleware for node.js
 
 # Features
-- Protects resources on the server
-- Creates and verifies tokens with the `aes-256-ctr` algorithm
-- Verifies signupKey (optional)
+- A complete flow for login and signup
+- Protects resources on the server via tokens encrypted with the `aes-256-ctr` algorithm
 - Depends on [miffo](https://github.com/karlpokus/miffo) for middleware functions that manipulate data
 - Very homemade and tailored to my needs. Probably not suitable for production.
 
