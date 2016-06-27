@@ -24,6 +24,10 @@ var Konstapel = require('konstapel'),
 
 db.start();
 
+function defaultResponse(req, res) {
+  res.status(200).json(req.data); // req.data = {token, username}
+}
+
 app.use('/items',
   klang.verifyToken.bind(klang),
   klang.findUserById.bind(db)
@@ -65,7 +69,7 @@ pwdIsValid          // IN req.body.pwd && req.user.pwd OUT null
 createToken         // IN req.user._id OUT req.data
 
 // token
-verifyToken         // IN req.body.token || req.query.token OUT req.temp.id
+verifyToken         // IN req.headers.token || req.body.token || req.query.token OUT req.temp.id
 findUserById        // IN req.temp.id OUT req.user
 ```
 
@@ -73,6 +77,9 @@ findUserById        // IN req.temp.id OUT req.user
 ```
 $ npm test
 ```
+
+# Todo
+- add test for invalid token in verifyToken
 
 # license
 MIT
