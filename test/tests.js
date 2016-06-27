@@ -75,16 +75,20 @@ test('.createToken', function(t){
 });
 
 test('.verifyToken', function(t){
-  var req = {body: {token: '806a7f191e18'}},
-      pass = klang.verifyToken(req, null, function(){
-        return true;
-      }),
+  var reqInHeader = {headers: {token: '806a7f191e18'}},
+      reqInBody = {body: {token: '806a7f191e18'}},
+      reqInQuery = {query: {token: '806a7f191e18'}},
+      passHeader = klang.verifyToken(reqInHeader, null, function(){return true;}),
+      passBody = klang.verifyToken(reqInBody, null, function(){return true;}),
+      passQuery = klang.verifyToken(reqInQuery, null, function(){return true;}),
       fail = klang.verifyToken({}, null, function(err){
         return err;
       });
 
-  t.equal(req.temp.id, 'abc123', 'decrypts userId');
-  t.equal(pass, true, 'calls next on valid token');
+  t.equal(passHeader, true, 'calls next on valid token in header');
+  t.equal(passBody, true, 'calls next on valid token in body');
+  t.equal(passQuery, true, 'calls next on valid token in query');  
+  t.equal(reqInQuery.temp.id, 'abc123', 'decrypts userId');
   t.equal(fail instanceof Error, true, 'returns error on no token');  
   t.end();
 });
